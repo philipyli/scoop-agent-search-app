@@ -1,0 +1,41 @@
+<ion-view title="Agents">
+  <div class="bar bar-subheader item-input-inset">
+    Active in&nbsp;&nbsp; 
+    <label class="item-input-wrapper">
+      <input type="search" placeholder="Enter Neighborhood or City" ng-change="searchingNeighborhood()" ng-focus="clearInput()" ng-model="location_input">
+      <button class="button button-clear" ng-click="clearInput()">X</button>  
+    </label>
+  </div>  
+
+  <ion-content class="has-header has-subheader">
+
+    <!-- location search autocomplete -->
+    <div class="card" ng-if="user_typing_in_location_input">
+        <a ng-repeat="neighborhood in matching_neighborhoods"
+           href="#/tab/agents?neighborhood_id={{neighborhood.neighborhood_id}}"
+           class="item item-text-wrap"> 
+            {{neighborhood.name}} <span class="small_grey_text">{{neighborhood.city}}</span>
+        </a>
+    </div> 
+
+    <ion-list>
+      <div class="list" ng-if="!user_typing_in_location_input">
+        <a ng-repeat="agent in agents"
+            data-ng-click="goToAgentDetailsState(agent,neighborhood)"
+           class="item item-thumbnail-left">
+            <img class="rounded_image" ng-src="{{ (agent.image_url) ? agent.image_url :'img/blankface2.png' }}">
+          <h2>{{agent.first_name}} {{agent.last_name}}</h2> 
+            <div class="sales_stats">
+              <div class="big_number">{{agent.neighborhood_qty}}</div>
+              <div class="little_text_block"><p class="normal_wrap">in {{agent.neighborhood}}</p></div>
+            </div>
+            <div class="sales_stats">
+              <div class="big_number">{{agent.city_qty}}</div>
+              <div class="little_text_block"><p class="normal_wrap">in {{agent.city}}</p></div>
+            </div>
+
+      	</a>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

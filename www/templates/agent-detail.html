@@ -1,0 +1,43 @@
+<!--
+  This template loads for the 'tab.agent-detail' state (app.js)
+  'agent' is a $scope variable created in the AgentsCtrl controller (controllers.js)
+  The AgentsCtrl pulls data from the Agents service (service.js)
+  The Agents service returns an array of agent data
+-->
+<ion-view title="Ask about {{agent.neighborhood}}">
+  <ion-content class="has-header padding">
+    <div class="list"> 
+      <div class="item item-thumbnail-left">
+        <img class="rounded_image" src="{{(agent.image_url) ? agent.image_url :'img/blankface2.png'}}">
+        <div class="item-text-wrap">
+          <b>Hi, I'm {{agent.first_name}}.</b><br /> Can I answer questions about buying in {{agent.neighborhood}}?
+        </div>
+    	</div>
+    </div>
+
+    <div class="item-input-inset" ng-show="!user.mesg.sent">
+      <div class="item-input-wrapper">
+        <input type="search" placeholder="Type Message Here" ng-model="user.mesg.input" ng-change="typingMesg()" />
+        <button class="button button-clear" ng-click="sendMesg()">
+          <i class="icon" ng-show="user.mesg.typing"></i>
+        </button>
+        <button class="button button-clear" ng-click="sendMesg()">
+          <i class="icon ion-android-send" ng-show="user.mesg.typing"></i>
+        </button>
+      </div>
+    </div> 
+
+    <div class="list" ng-if="user.mesg.sent">
+      <div class="item item-thumbnail-right">
+        <img class="rounded_image" src="./img/blankface2.png">
+        <div class="item-text-wrap">
+          {{ user.mesg.input }}
+        </div>
+      </div>
+      <br />
+      <h4>
+        We're relaying your message to {{agent.first_name}} now, and will let you know about their availability.
+      </h4>
+    </div> 
+  </ion-content>
+</ion-view>

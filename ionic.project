@@ -1,0 +1,8 @@
+{
+  "name": "agentgo",
+  "app_id": "",
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}
