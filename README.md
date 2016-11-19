@@ -5,7 +5,7 @@ App for househunters to review records of real estate agents based on location b
 
 ## Data Integration
 
-* MLS data 
+* MLS data
 * Trulia for agent photos
 
 
